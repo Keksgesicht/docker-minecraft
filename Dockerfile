@@ -1,4 +1,4 @@
-FROM debian
+FROM ubuntu
 
 ENV UID         99
 ENV GID         100
@@ -14,16 +14,17 @@ ENV JAVA_HEAP_MAX 1024m
 RUN set -x \
  && apt-get update \
  && apt-get install -y --no-install-recommends --no-install-suggests \
-        default-jre \
- && useradd --uid $UID --gid $GID -m minecraft \
+		openjdk-8-jre \
  && apt-get clean autoclean \
  && apt-get autoremove -y \
  && rm -rf /var/lib/apt/lists/*
- 
-EXPOSE 25565/tcp
+
+RUN useradd --uid $UID --gid $GID -m minecraft
 RUN mkdir -p $EXECDIR \
  && chown $UID:$GID -R $HOME
+
 VOLUME $EXECDIR
+EXPOSE 25565/tcp
 
 USER minecraft
 WORKDIR $EXECDIR
