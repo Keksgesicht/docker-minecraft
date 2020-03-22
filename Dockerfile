@@ -30,7 +30,7 @@ EXPOSE 25565/tcp
 USER minecraft
 WORKDIR $EXECDIR
 ENTRYPOINT java \
-           $JAVAPARAMS
+           $JAVAPARAMS \
            -Xms${JAVA_HEAP_MIN} \
            -Xmx${JAVA_HEAP_MAX} \
            -jar ${JARFILE}.jar \
