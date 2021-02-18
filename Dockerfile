@@ -16,6 +16,7 @@ RUN set -x \
  && apt-get update \
  && apt-get install -y --no-install-recommends --no-install-suggests \
         openjdk-8-jre \
+        curl wget \
  && apt-get clean autoclean \
  && apt-get autoremove -y \
  && rm -rf /var/lib/apt/lists/*
